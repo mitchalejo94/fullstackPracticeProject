@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 //Will fix any issues with parsing
 app.use(express.json());
+app.use(cors());
 
 //This is how we import our tables. Will automatically go through every table.
 const db = require("./models");
