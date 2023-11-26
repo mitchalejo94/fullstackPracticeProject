@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-const URL = "http://localhost:3002/posts";
+// const URL = "http://localhost:3002/posts";
 function Home() {
   const [postList, setPostList] = useState([]);
   useEffect(() => {
     //you want to run the logic here
-    axios.get(URL).then((response) => {
+    axios.get("http://localhost:3002/posts").then((response) => {
       setPostList(response.data);
     });
   }, []);
