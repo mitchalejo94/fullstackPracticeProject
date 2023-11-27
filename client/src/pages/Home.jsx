@@ -16,6 +16,7 @@ function Home() {
       {postList.map((value, key) => {
         return (
           <div
+            key={key}
             className="post"
             onClick={() => {
               navigate(`/post/${value.id}`);
