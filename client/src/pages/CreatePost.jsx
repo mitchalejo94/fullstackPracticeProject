@@ -3,8 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //with Formik it is uncessary to use states to hold the values of the inputs.
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
+  let navigate = useNavigate();
   const initialValues = {
     title: "",
     postText: "",
@@ -18,7 +20,7 @@ export default function CreatePost() {
 
   const onSubmit = (data) => {
     axios.post("http://localhost:3002/posts", data).then((response) => {
-      console.log("it worked", response, data);
+      navigate("/");
     });
   };
   return (
