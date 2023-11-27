@@ -18,7 +18,7 @@ export default function CreatePost() {
 
   const onSubmit = (data) => {
     axios.post("http://localhost:3002/posts", data).then((response) => {
-      console.log("it worked");
+      console.log("it worked", response, data);
     });
   };
   return (

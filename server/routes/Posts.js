@@ -12,6 +12,12 @@ router.get("/", async (req, res) => {
   res.json(postList);
 });
 
+router.get("/byId/:id", async (req, res) => {
+  const id = req.params.id;
+  const post = await Posts.findByPk(id);
+  res.json(post);
+});
+
 router.post("/", async (req, res) => {
   //inserting the data into the database using sequelize
   const post = req.body;
