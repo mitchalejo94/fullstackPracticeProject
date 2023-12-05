@@ -11,20 +11,39 @@ function Home() {
       setPostList(response.data);
     });
   }, []);
+
+  const likeAPost = (postId) => {
+    axios
+      .post(
+        "http://localhost:3002/likes",
+        { PostId: postId },
+        { headers: { accessToken: localStorage.getItem("accessToken") } }
+      )
+      .then((response) => {
+        alert(response.data);
+      });
+  };
   return (
     <div>
       {postList.map((value, key) => {
         return (
-          <div
-            key={key}
-            className="post"
-            onClick={() => {
-              navigate(`/post/${value.id}`);
-            }}
-          >
+          <div key={key} className="post">
             <div className="title">{value.title} </div>
-            <div>{value.postText}</div>
+            <div
+              onClick={() => {
+                navigate(`/post/${value.id}`);
+              }}
+            >
+              {value.postText}
+            </div>
             <div>{value.username}</div>
+            <button
+              onClick={() => {
+                likeAPost(value.id);
+              }}
+            >
+              Like Button
+            </button>
           </div>
         );
       })}
