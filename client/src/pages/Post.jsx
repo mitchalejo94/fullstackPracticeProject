@@ -89,7 +89,11 @@ export default function Post() {
                   {comment.commentBody}
                   <label> - {comment.username} </label>
                   {authState.username === comment.username && (
-                    <button onClick={() => deleteComment(comment.id)}>
+                    <button
+                      onClick={() => {
+                        deleteComment(comment.id);
+                      }}
+                    >
                       Delete
                     </button>
                   )}

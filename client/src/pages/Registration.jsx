@@ -2,8 +2,10 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
+  let navigate = useNavigate();
   const initialValues = {
     username: "",
     password: "",
@@ -17,6 +19,7 @@ function Registration() {
   const onSubmit = (data) => {
     axios.post("http://localhost:3002/auth", data).then(() => {
       console.log(data);
+      navigate("/login");
     });
   };
   return (
@@ -44,7 +47,7 @@ function Registration() {
             type="password"
             placeholder="Password.."
           />
-          <button>Register User </button>
+          <button type="submit">Register User </button>
         </Form>
       </Formik>
     </div>
