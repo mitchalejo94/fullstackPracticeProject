@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Likes } = require("../models");
 const { validateToken } = require("../middleware/AuthMiddleware");
+
 router.post("/", validateToken, async (req, res) => {
   const { PostId } = req.body;
   const UserId = req.user.id;
@@ -11,7 +12,7 @@ router.post("/", validateToken, async (req, res) => {
   });
   if (!found) {
     await Likes.create({ PostId: PostId, UserId: UserId });
-    res.json("Liked Post");
+    res.json({ liked: true });
   } else {
     await Likes.destroy({
       where: {
@@ -19,7 +20,7 @@ router.post("/", validateToken, async (req, res) => {
         UserId: UserId,
       },
     });
-    res.json("Unliked the Post");
+    res.json({ liked: false });
   }
 });
 
